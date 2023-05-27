@@ -1,6 +1,6 @@
 "use strict";
 
-const _moveSequence = [];
+let _moveSequence = [];
 let _isActionPhase = false;
 let _currentMoveIndex = 0;
 
@@ -11,7 +11,7 @@ function handleButtonClick(e) {
 }
 
 function handleStartClick($button) {
-    if (!$button.classList.contains('clickable')) {
+    if (!$button.classList.contains('clickable') || _isActionPhase) {
         return;
     }
     $button.classList.remove('clickable');
@@ -21,6 +21,7 @@ function handleStartClick($button) {
 
 function startActionPhase() {
     _isActionPhase = true;
+    _currentMoveIndex = 0;
     addClickableToColors();
 }
 
@@ -51,6 +52,30 @@ function handleColorClick($button) {
         return;
     }
     const clickedId = $button.id;
+    if (_moveSequence[_currentMoveIndex] !== clickedId) {
+        showWrong();
+        resetGame();
+        return;
+    }
+    $button.classList.add('highlighted');
+    setTimeout(() => $button.classList.remove('highlighted'), 250);
+    if (_currentMoveIndex === _moveSequence.length - 1) {
+        _currentMoveIndex = 0;
+        _isActionPhase = false;
+        addMoveToSequence();
+        removeClickableFromColors();
+        setTimeout(() => displayMove(0), 250);
+        return;
+    }
+    _currentMoveIndex++;
+}
+
+function resetGame() {
+    removeClickableFromColors();
+    _moveSequence = [];
+    _currentMoveIndex = 0;
+    _isActionPhase = false;
+    document.querySelector('#start-button').classList.add('clickable');
 }
 
 function addClickableToColors() {
