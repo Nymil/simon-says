@@ -1,6 +1,6 @@
 "use strict";
 
-let _moveSequence = [];
+const _moveSequence = [];
 
 function handleButtonClick(e) {
     e.preventDefault();
@@ -19,7 +19,11 @@ function handleColorClick($button) {
     if (!$button.classList.contains('clickable')) {
         return;
     }
-    const clickedColor = $button.id.split('-')[0];
+    const clickedColor = colorFromId($button.id);
+}
+
+function colorFromId(id) {
+    return id.split('-')[0];
 }
 
 function addClickableToColors() {
