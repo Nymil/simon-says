@@ -4,6 +4,10 @@
     --red-button-color: #FD433E;
     --yellow-button-color: #FEDA30;
     --blue-button-color: #1377D7;
+    --highlighted-green-button-color: #26752f;
+    --highlighted-red-button-color: #9d2f2c;
+    --highlighted-yellow-button-color: #806e1f;
+    --highlighted-blue-button-color: #144472;
     --button-size: 25rem;
 }
 
@@ -53,7 +57,19 @@ button.clickable:hover {
     border-bottom-right-radius: 100%;
 }
 
-/*temp hide start button*/
+#blue-button.highlighted, #blue-button.clickable:active {
+    background-color: var(--highlighted-blue-button-color);
+}
+#red-button.highlighted, #red-button.clickable:active {
+    background-color: var(--highlighted-red-button-color);
+}
+#yellow-button.highlighted, #yellow-button.clickable:active {
+    background-color: var(--highlighted-yellow-button-color);
+}
+#green-button.highlighted, #green-button.clickable:active {
+    background-color: var(--highlighted-green-button-color);
+}
+
 #start-button {
     position: fixed;
     top: 50%;

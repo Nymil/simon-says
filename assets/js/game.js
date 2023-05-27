@@ -14,6 +14,17 @@ function handleStartClick($button) {
     }
     $button.classList.remove('clickable');
     addMoveToSequence();
+    startRound();
+}
+
+function startRound() {
+    displayMoveSequence();
+}
+
+function displayMoveSequence() {
+    _moveSequence.forEach(move => {
+        const $button = document.querySelector(`#${move}`);
+    });
 }
 
 function addMoveToSequence() {
