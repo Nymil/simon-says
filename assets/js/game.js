@@ -53,7 +53,7 @@ function handleColorClick($button) {
     }
     const clickedId = $button.id;
     if (_moveSequence[_currentMoveIndex] !== clickedId) {
-        showWrong();
+        blinkButton(0);
         resetGame();
         return;
     }
@@ -68,6 +68,17 @@ function handleColorClick($button) {
         return;
     }
     _currentMoveIndex++;
+}
+
+function blinkButton(timesBlinked) {
+    const $button = document.querySelector('#start-button');
+    $button.classList.add('wrong');
+    setTimeout(() => {
+        $button.classList.remove('wrong');
+        if (timesBlinked < 2) {
+            setTimeout(() => blinkButton(++timesBlinked), 100);
+        }
+    }, 100);
 }
 
 function resetGame() {

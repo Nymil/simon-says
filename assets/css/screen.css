@@ -8,6 +8,7 @@
     --highlighted-red-button-color: #9d2f2c;
     --highlighted-yellow-button-color: #806e1f;
     --highlighted-blue-button-color: #144472;
+    --wrong-background-color: #bb6454;
     --button-size: 25rem;
 }
 
@@ -85,4 +86,7 @@ button.clickable:hover {
 }
 #start-button.clickable:hover {
     transform: scale(1.025) translate(-49%, -49%);
+}
+#start-button.wrong {
+    background-color: var(--wrong-background-color);
 }
