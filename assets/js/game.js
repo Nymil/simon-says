@@ -1,6 +1,8 @@
 "use strict";
 
 const _moveSequence = [];
+let _isActionPhase = false;
+let _currentMoveIndex = 0;
 
 function handleButtonClick(e) {
     e.preventDefault();
@@ -14,17 +16,28 @@ function handleStartClick($button) {
     }
     $button.classList.remove('clickable');
     addMoveToSequence();
-    startRound();
+    displayMove(0);
 }
 
-function startRound() {
-    displayMoveSequence();
+function startActionPhase() {
+    _isActionPhase = true;
+    addClickableToColors();
 }
 
-function displayMoveSequence() {
-    _moveSequence.forEach(move => {
-        const $button = document.querySelector(`#${move}`);
-    });
+function displayMove(currentIndex) {
+    if (currentIndex >= _moveSequence.length) {
+        startActionPhase();
+        return;
+    }
+    setTimeout(() => { // timeout for small delay between showing different moves
+        const currentMove = _moveSequence[currentIndex];
+        const $button = document.querySelector(`#${currentMove}`);
+        $button.classList.add('highlighted');
+        setTimeout(() => {
+            $button.classList.remove('highlighted');
+            displayMove(++currentIndex);
+        }, 1000);
+    }, 500);
 }
 
 function addMoveToSequence() {
@@ -34,7 +47,7 @@ function addMoveToSequence() {
 }
 
 function handleColorClick($button) {
-    if (!$button.classList.contains('clickable')) {
+    if (!$button.classList.contains('clickable') || !_isActionPhase) {
         return;
     }
     const clickedId = $button.id;
