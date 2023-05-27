@@ -34,7 +34,7 @@ button {
     border: none;
     transition: transform 0.05s ease-in;
 }
-button:hover {
+button.clickable:hover {
     transform: scale(1.025);
 }
 
@@ -69,6 +69,6 @@ button:hover {
     font-size: 7rem;
     font-family: "Calibri Light", serif ;
 }
-#start-button:hover {
+#start-button.clickable:hover {
     transform: scale(1.025) translate(-49%, -49%);
 }
