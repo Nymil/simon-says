@@ -13,17 +13,20 @@ function handleStartClick($button) {
         return;
     }
     $button.classList.remove('clickable');
+    addMoveToSequence();
+}
+
+function addMoveToSequence() {
+    const possibleMoves = ['red-button', 'blue-button', 'yellow-button', 'green-button'];
+    const randomIndex = Math.floor(Math.random() * possibleMoves.length);
+    _moveSequence.push(possibleMoves[randomIndex]);
 }
 
 function handleColorClick($button) {
     if (!$button.classList.contains('clickable')) {
         return;
     }
-    const clickedColor = colorFromId($button.id);
-}
-
-function colorFromId(id) {
-    return id.split('-')[0];
+    const clickedId = $button.id;
 }
 
 function addClickableToColors() {
