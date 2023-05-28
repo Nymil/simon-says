@@ -16,7 +16,7 @@ function handleStartClick($button) {
     }
     $button.classList.remove('clickable');
     addMoveToSequence();
-    displayMove(0);
+    displayMove();
 }
 
 function startActionPhase() {
@@ -25,7 +25,7 @@ function startActionPhase() {
     addClickableToColors();
 }
 
-function displayMove(currentIndex) {
+function displayMove(currentIndex = 0) {
     if (currentIndex >= _moveSequence.length) {
         startActionPhase();
         return;
@@ -53,7 +53,7 @@ function handleColorClick($button) {
     }
     const clickedId = $button.id;
     if (_moveSequence[_currentMoveIndex] !== clickedId) {
-        blinkButton(0);
+        blinkButton();
         resetGame();
         return;
     }
@@ -64,13 +64,13 @@ function handleColorClick($button) {
         _isActionPhase = false;
         addMoveToSequence();
         removeClickableFromColors();
-        setTimeout(() => displayMove(0), 250);
+        setTimeout(() => displayMove(), 250);
         return;
     }
     _currentMoveIndex++;
 }
 
-function blinkButton(timesBlinked) {
+function blinkButton(timesBlinked = 0) {
     const $button = document.querySelector('#start-button');
     $button.classList.add('wrong');
     setTimeout(() => {
