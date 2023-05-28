@@ -34,6 +34,7 @@ function displayMove(currentIndex = 0) {
         const currentMove = _moveSequence[currentIndex];
         const $button = document.querySelector(`#${currentMove}`);
         $button.classList.add('highlighted');
+        playSound($button.id);
         setTimeout(() => {
             $button.classList.remove('highlighted');
             displayMove(++currentIndex);
@@ -59,6 +60,7 @@ function handleColorClick($button) {
         return;
     }
     $button.classList.add('highlighted');
+    playSound(clickedId);
     setTimeout(() => $button.classList.remove('highlighted'), 250);
     if (_currentMoveIndex === _moveSequence.length - 1) {
         _currentMoveIndex = 0;
