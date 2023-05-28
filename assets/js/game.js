@@ -54,6 +54,7 @@ function handleColorClick($button) {
     const clickedId = $button.id;
     if (_moveSequence[_currentMoveIndex] !== clickedId) {
         blinkButton();
+        playSound('lose-sound');
         resetGame();
         return;
     }
